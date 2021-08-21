@@ -100,7 +100,7 @@ class EventsController extends BaseController
 
     public function getEventsWithWorkshops() {
         try {
-            $Event = Event::all();
+            $Event = Event::with('Workshops')->get();
             $response = $Event; 
     
             if($response){
@@ -196,7 +196,7 @@ class EventsController extends BaseController
     public function getFutureEventsWithWorkshops() {
         try {
             
-            $Event = Event::leftJoin('workshops', 'workshops.event_id', '=', 'events.id' )->whereDate('workshops.start', '>', Carbon::now())->get();
+            $Event = Event::with('Workshops')->leftJoin('workshops', 'workshops.event_id', '=', 'events.id' )->whereDate('workshops.start', '>', Carbon::now())->get();
             $response = $Event; 
     
             if($response){

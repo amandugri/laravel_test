@@ -95,8 +95,8 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-
-        $MenuItem = MenuItem:all();
+        try{
+        $MenuItem = MenuItem::all();
         $response = $MenuItem; 
 
         if($response){
